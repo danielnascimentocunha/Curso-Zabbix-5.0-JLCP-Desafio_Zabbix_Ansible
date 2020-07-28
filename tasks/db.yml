@@ -24,8 +24,8 @@
 - name: Criar senha de Root
   mysql_user:
     name: root
-    host: {{ item }}
     password: {{ mysql_root_pass }}
+    host: {{ item }}
     with_items:
       - 127.0.0.1
       - ::1

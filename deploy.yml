@@ -1,8 +1,8 @@
   - hosts: all
     vars:
-      zabbix_front: 10.0.1.13
-      zabbix_server: 10.0.1.12
-      zabbix_db: 10.0.1.11
+      zabbix_front: 10.0.0.201
+      zabbix_server: 10.0.0.228
+      zabbix_db: 10.0.0.213
       zabbix_danco: zabbix
       zabbix_db_server_user: zabbix_server
       zabbix_db_server_pass: 'Curso!Zabbix5'
@@ -10,17 +10,17 @@
       zabbix_db_front_pass: 'Curso!Zabbix5'
       mysql_root_pass: 'SenhaRoot1!' 
   
-  - hosts: 10.0.1.11
+  - hosts: 10.0.0.213
     roles:
       - zabbix_basecentos
       - zabbix_db_mysql
   
-  - hosts: 10.0.1.12
+  - hosts: 10.0.0.228
     roles:
       - zabbix_basecentos
       - zabbix_server
   
-  - hosts: 10.0.1.13
+  - hosts: 10.0.0.201
     roles:
       - zabbix_basecentos
       - zabbix_front

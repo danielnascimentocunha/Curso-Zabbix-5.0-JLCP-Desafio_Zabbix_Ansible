@@ -1,3 +1,2 @@
 - name: Instalação do Mysql
   include_tasks: db.yml
-  when: ansible_all_ipv4_addresses =="{{ zabbix_db }}"

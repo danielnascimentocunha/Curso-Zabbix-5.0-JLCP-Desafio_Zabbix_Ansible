@@ -1,5 +1,2 @@
-- name: Configurações iniciais
-  include_tasks: inicial.yml
-
 - name: Instalação do Zabbix Web
   include_tasks: front.yml

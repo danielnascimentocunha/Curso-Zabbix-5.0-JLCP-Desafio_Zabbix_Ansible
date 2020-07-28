@@ -1,6 +1,3 @@
-- name: Configurações iniciais
-  include_tasks: inicial.yml
-
 - name: Instalação do zabbix_server
   include_tasks: server.yml
   when: ansible_all_ipv4_addresses =="{{ zabbix_server }}"

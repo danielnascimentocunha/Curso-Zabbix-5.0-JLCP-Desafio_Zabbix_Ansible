@@ -1,7 +1,7 @@
   - hosts: 10.0.0.213
     roles:
-      role: zabbix_basecentos
-      role: zabbix_db_mysql
+      - role: zabbix_basecentos
+      - role: zabbix_db_mysql
         vars:
           zabbix_front: 10.0.0.201
           zabbix_server: 10.0.0.228
@@ -15,8 +15,8 @@
  
   - hosts: 10.0.0.228
     roles:
-      role: zabbix_basecentos
-      role: zabbix_server
+      - role: zabbix_basecentos
+      - role: zabbix_server
         vars:
           zabbix_front: 10.0.0.201
           zabbix_server: 10.0.0.228
@@ -27,8 +27,8 @@
           
   - hosts: 10.0.0.201
     roles:
-      role: zabbix_basecentos
-      role: zabbix_front
+      - role: zabbix_basecentos
+      - role: zabbix_front
         vars:
           zabbix_front: 10.0.0.201
           zabbix_server: 10.0.0.228

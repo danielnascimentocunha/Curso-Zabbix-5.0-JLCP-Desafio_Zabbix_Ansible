@@ -9,17 +9,10 @@
     name:
       - zabbix-web-mysql
       - zabbix-apache-conf
+      - httpd
 
-#- name: ADD time zone no 
-#  shell: "echo php_value[date.timezone] = America/Recife >> /etc/php-fpm.d/zabbix.conf"
-
-- name: Copy zabbix.web template 
-  template:
-    src: templates/zabbix_web.j2
-    dest: /etc/apache2/conf-available/zabbix.conf
-    mode: 777
-    owner: root
-    group: root
+- name: ADD time zone no 
+  shell: "echo php_value[date.timezone] = America/Recife >> /etc/php-fpm.d/zabbix.conf"
 
 - name: Copy zabbix.conf.php template 
   template:

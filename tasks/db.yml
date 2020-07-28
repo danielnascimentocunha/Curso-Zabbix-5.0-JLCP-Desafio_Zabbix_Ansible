@@ -3,7 +3,6 @@
     name:
       - mysql-server
       - mysql
-      - mysql-python
 
 - name: Habilita e inicia servico MYSQL
   systemd:
@@ -23,9 +22,9 @@
 
 - name: Criar senha de Root
   mysql_user:
-    name: 'root'
-    password: {{ mysql_root_pass }}
-    host: {{ item }}
+    name: root
+    password: {{mysql_root_pass}}
+    host: {{item}}
     with_items:
       - 127.0.0.1
       - ::1

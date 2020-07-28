@@ -9,7 +9,7 @@
       - zabbix-server
       - mysql
 
-- name: Executar scrip mysql de criação de banco e usuários
+- name: Executar scrip mysql de criacao de banco e usuarios
   shell: "zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -h {{ zabbix_db }} -u{{ zabbix_db_server_user }} -p{{ zabbix_db_server_pass }} zabbix"
   msg: "{{ result_schema }}"
 

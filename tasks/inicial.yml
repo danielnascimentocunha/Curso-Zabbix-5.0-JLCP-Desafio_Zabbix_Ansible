@@ -31,7 +31,7 @@
     enabled: yes
 - name: Desabilitar o SELINUX
   selinux:
-    state:W disabled
+    state: disabled
 - name: Reboot
   reboot:
     reboot_timeout: 300

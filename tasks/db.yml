@@ -3,6 +3,7 @@
     name:
       - mysql-server
       - mysql
+      - python3-PyMySQL
 
 - name: Habilita e inicia servico MYSQL
   systemd:

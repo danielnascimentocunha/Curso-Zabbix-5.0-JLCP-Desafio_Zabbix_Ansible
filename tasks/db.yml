@@ -23,9 +23,13 @@
 
 - name: Criar senha de Root
   mysql_user:
-    name: root
+    name: 'root'
     password: {{ mysql_root_pass }}
-    host: localhost
+    host: {{ item }}
+    with_items:
+      - 127.0.0.1
+      - ::1
+      - localhost
 
 - name: Copiar scrip mysql de criação de banco e usuários
   template:

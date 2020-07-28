@@ -1,0 +1,11 @@
+# Daddos de identificacao
+zabbix_front: 10.0.1.13
+zabbix_server: 10.0.1.12
+zabbix_db: 10.0.1.11
+zabbix_danco: zabbix
+zabbix_db_server_user: zabbix_server
+zabbix_db_server_pass: 'Curso!Zabbix5'
+zabbix_db_front_user: zabbix_web
+zabbix_db_front_pass: 'Curso!Zabbix5'
+
+mysql_root_pass: 'SenhaRoot1!' 

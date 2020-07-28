@@ -1,9 +1,14 @@
-- name: Deploy Zabbix5 - MYSQL
-  hosts: 10.0.1.11
-  roles: zabbix_db_mysql
-- name: Deploy Zabbix5 - Server
-  hosts: 10.0.1.12
-  roles: zabbix_server
-- name: Deploy Zabbix5 - Front
-  hosts: 10.0.1.13
-  roles: zabbix_front
+- name: Deploy Zabbix5
+  vars:
+    #Colocar os IPs das máquinas
+    - zabbix_front: 10.0.1.13
+    - zabbix_server: 10.0.1.12
+    - zabbix_db: 10.0.1.11
+    hosts: "{{ zabbix_db }}"
+    roles: zabbix_db_mysql
+    hosts: "{{ zabbix_server }}"
+    roles: zabbix_server
+    hosts: "{{ zabbix_front }}"
+    roles: zabbix_front
+
+

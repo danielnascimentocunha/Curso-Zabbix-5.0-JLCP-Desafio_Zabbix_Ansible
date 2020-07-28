@@ -23,8 +23,8 @@
 - name: Criar senha de Root
   mysql_user:
     name: root
-    password: {{mysql_root_pass}}
-    host: {{item}}
+    password: "{{ mysql_root_pass }}"
+    host: "{{ item }}"
     with_items:
       - 127.0.0.1
       - ::1
@@ -40,7 +40,7 @@
     state: import
     name: all
     target: /tmp/dump.sql
-    login_password: {{ mysql_root_pass }}
+    login_password: "{{ mysql_root_pass }}"
     login_user: root
 
 - name: Adicionar portas do MYSQL no firewall

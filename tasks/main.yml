@@ -1,4 +1,4 @@
-- name: Configurações iniciais
+#- name: Configurações iniciais
 #  include_tasks: inicial.yml
 
 - name: DB

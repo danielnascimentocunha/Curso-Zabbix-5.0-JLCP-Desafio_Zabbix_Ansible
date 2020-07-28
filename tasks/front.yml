@@ -4,3 +4,51 @@
     state: present
 
 
+- name: Instala pacotes Zabbix
+  dnf:
+    name:
+      - zabbix-web-mysql
+      - zabbix-apache-conf
+
+#- name: ADD time zone no 
+#  shell: "echo php_value[date.timezone] = America/Recife >> /etc/php-fpm.d/zabbix.conf"
+
+- name: Copy zabbix.web template 
+  template:
+    src: templates/zabbix_web.j2
+    dest: /etc/apache2/conf-available/zabbix.conf
+    mode: 777
+    owner: root
+    group: root
+
+- name: Copy zabbix.conf.php template 
+  template:
+    src: templates/zabbix.conf.php.j2
+    dest: /etc/zabbix/web/zabbix.conf.php
+    mode: 644
+    owner: www-data
+    group: www-data
+
+- name: Verificando se o servico httpd esta funcionando
+  systemd:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Verificando se o servico php-fpm esta funcionando
+  systemd:
+    name: php-fpm
+    state: started
+    enabled: yes
+
+- name: Adicionar porta 80 no firewall
+  firewalld:
+    port: 80/tcp
+    permanent: yes
+    state: enabled
+
+- name: Reload no firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
+    enabled: yes

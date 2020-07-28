@@ -1,7 +1,7 @@
   - hosts: 10.0.1.11
-      roles:
-        - zabbix_basecentos
-        - zabbix_db_mysql
+    roles:
+      - zabbix_basecentos
+      - zabbix_db_mysql
   - hosts: 10.0.1.12
     roles:
       - zabbix_basecentos

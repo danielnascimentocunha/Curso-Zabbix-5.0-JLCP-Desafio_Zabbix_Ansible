@@ -1,7 +1,7 @@
-- name: Deploy Zabbix Agent
-  hosts: estudo
+- name: Deploy Zabbix5
+  hosts: zabbix5
   become: true
   
   roles: 
-  - zabbixagentcurso
+  - desafiozabbix
 

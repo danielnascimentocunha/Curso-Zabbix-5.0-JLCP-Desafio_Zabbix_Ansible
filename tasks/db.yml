@@ -1,0 +1,26 @@
+- name: Configurações iniciais
+  include_tasks: inicial.yml
+
+- name: Instalar Mysql
+  dnf:
+    name:
+      - msyql
+      - mysql-server
+
+- name: Criar Usuários Zabbix no Mysql
+  template:
+    src: templates/zabbix_db.j2
+    dest: ~/zabbix.sql
+    
+- name: Altera permissão Zabbix
+  file:
+    path: /etc/zabbix/
+    mode: 0775
+    owner: zabbix
+    group: zabbix  
+
+- name: Habilita e inicia servico
+  systemd:
+    name: zabbix-agent
+    state: started
+    enabled: yes

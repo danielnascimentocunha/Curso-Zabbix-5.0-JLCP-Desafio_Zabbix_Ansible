@@ -1,13 +1,13 @@
-#- name: Configurações iniciais
-#  include_tasks: inicial.yml
+- name: Configurações iniciais
+  include_tasks: inicial.yml
 
-#- name: DB
-#  include_tasks: db.yml
-#  when: ansible_hostname =="zabbixdb"
+- name: DB
+  include_tasks: db.yml
+  when: ansible_hostname =="zabbixdb"
 
-#- name: SERVER
-#  include_tasks: server.yml
-#  when: ansible_hostname =="zabbixserver"
+- name: SERVER
+  include_tasks: server.yml
+  when: ansible_hostname =="zabbixserver"
 
 - name: FRONT
   include_tasks: front.yml

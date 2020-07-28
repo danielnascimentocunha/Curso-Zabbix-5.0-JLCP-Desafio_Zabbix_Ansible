@@ -1,6 +1,6 @@
 - name: Set timezone para America/Recife
   timezone:
-    name:America/Recife
+    name: America/Recife
 
 - name: Instala pacotes chrony
   dnf:

@@ -1,0 +1,54 @@
+- name: Instalar Mysql
+  dnf:
+    name:
+      - mysql-server
+      - mysql
+      - python3-PyMySQL
+
+- name: Habilita e inicia servico MYSQL
+  systemd:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: Remover todos os usuários anonimos
+  mysql_user:
+    name: ''
+    host_all: yes
+    state: absent
+
+- name: REmover database test
+  mysql_db:
+    name: ''
+    state: absent
+
+- name: Criar senha de Root
+  mysql_user:
+    name: root
+    password: "{{ mysql_root_pass }}"
+    host: localhost
+
+- name: Copiar scrip mysql de criação de banco e usuários
+  template:
+    src: templates/mysql.j2
+    dest: /tmp/dump.sql
+
+- name: Executar scrip mysql de criação de banco e usuários
+  mysql_db:
+    state: import
+    name: all
+    target: /tmp/dump.sql
+    login_password: "{{ mysql_root_pass }}"
+    login_user: root
+
+- name: Adicionar portas do MYSQL no firewall
+  firewalld:
+    port: 3306/tcp
+    permanent: yes
+    state: enabled
+
+- name: Reload no firewalld
+  systemd:
+    name: firewalld
+    state: reloaded
+    enabled: yes

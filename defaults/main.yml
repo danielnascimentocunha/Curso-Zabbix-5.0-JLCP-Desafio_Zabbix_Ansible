@@ -1,0 +1,5 @@
+# Configuracao Agente
+zabbix_pid: /var/run/zabbix/zabbix_agentd.pid
+zabbix_log: /var/log/zabbix/zabbix_agentd.log
+zabbix_server: 10.0.0.120
+zabbix_server_active: 10.0.0.120

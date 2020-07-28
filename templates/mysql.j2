@@ -1,5 +1,5 @@
 create database {{ zabbix_danco }} character set utf8 collate utf8_bin;
-create user 'zabbix'@'localhost' identified by {{ zabbix_db_server_pass }}';
+create user 'zabbix'@'localhost' identified by '{{ zabbix_db_server_pass }}';
 grant all privileges on zabbix.* to 'zabbix'@'localhost';
 flush privileges;
 

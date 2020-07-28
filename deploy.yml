@@ -9,15 +9,15 @@
     zabbix_db_front_pass: 'Curso!Zabbix5'
     mysql_root_pass: 'SenhaRoot1!'
 
-  - hosts: {{ zabbix_db }}
+  - hosts: "{{ zabbix_db }}"
     roles:
       - zabbix_basecentos
       - zabbix_db_mysql
-  - hosts: {{ zabbix_server }}
+  - hosts: "{{ zabbix_server }}"
     roles:
       - zabbix_basecentos
       - zabbix_server
-  - hosts: {{ zabbix_front }}
+  - hosts: "{{ zabbix_front }}"
     roles:
       - zabbix_basecentos
       - zabbix_front

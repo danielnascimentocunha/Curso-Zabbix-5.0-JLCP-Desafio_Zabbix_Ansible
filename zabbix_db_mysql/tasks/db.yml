@@ -1,3 +1,7 @@
+- name: Mudar Hostname
+  hostname:
+    name: zabbixdb
+
 - name: Instalar Mysql
   dnf:
     name:

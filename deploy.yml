@@ -1,5 +1,13 @@
 - name: Deploy Zabbix5
-  hosts: zabbix5
+  vars:
+    #Colocar os IPs das máquinas
+    zabbix_front: 10.0.1.13
+    zabbix_server: 10.0.1.12
+    zabbix_db: 10.0.1.11
+  hosts:
+    - "{{ zabbix_front }}"
+    - "{{ zabbix_server }}"
+    - "{{ zabbix_db }}"
   become: true
  
   

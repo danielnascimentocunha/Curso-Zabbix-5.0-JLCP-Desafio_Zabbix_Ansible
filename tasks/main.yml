@@ -1,9 +1,9 @@
 #- name: Configurações iniciais
 #  include_tasks: inicial.yml
 
-- name: DB
-  include_tasks: db.yml
-  when: ansible_hostname =="zabbixdb"
+#- name: DB
+#  include_tasks: db.yml
+#  when: ansible_hostname =="zabbixdb"
 
 - name: SERVER
   include_tasks: server.yml

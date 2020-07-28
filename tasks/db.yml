@@ -16,6 +16,7 @@
     name: ''
     host_all: yes
     state: absent
+
 - name: REmover database test
   mysql_db:
     name: ''
@@ -25,7 +26,7 @@
   mysql_user:
     name: root
     password: "{{ mysql_root_pass }}"
-    host: *
+    host: localhost
 
 - name: Copiar scrip mysql de criação de banco e usuários
   template:
@@ -33,7 +34,7 @@
     dest: /tmp/dump.sql
 
 - name: Executar scrip mysql de criação de banco e usuários
-  template:
+  mysql_db:
     state: import
     name: all
     target: /tmp/dump.sql

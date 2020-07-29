@@ -1,45 +1,26 @@
   - hosts:
-    - 10.0.0.213
-    - 10.0.0.228
-    -10.0.0.201
+    - &ip_zabbix_front 192.168.18.16
+    - &ip_zabbix_server 192.168.18.15
+    - &ip_zabbix_db 192.168.18.11
+    vars: &variaveis
+      - zabbix_server: *ip_zabbix_server
+      - zabbix_db: *ip_zabbix_db
+      - zabbix_front: *ip_zabbix_front
+      - zabbix_danco: 'zabbix'
+      - zabbix_db_server_user: 'zabbix_server'
+      - zabbix_db_server_pass: 'Curso!Zabbix5'
+      - zabbix_db_front_user: 'zabbix_web'
+      - zabbix_db_front_pass: 'Curso!Zabbix5'
+      - mysql_root_pass: 'SenhaRoot1!'
+      - timezone: 'America/Recife'
+      - zabbix_server_hostname: 'zb_server'
+      - zabbix_db_hostname: 'zb_mysql'
+      - zabbix_front_hostname: 'zb_front'
     roles:
       - role: zabbix_basecentos
-
-  - hosts: 10.0.0.213
-    roles:
       - role: zabbix_db_mysql
-        vars:
-          zabbix_front: 10.0.0.201
-          zabbix_server: 10.0.0.228
-          zabbix_db: 10.0.0.213
-          zabbix_danco: zabbix
-          zabbix_db_server_user: zabbix_server
-          zabbix_db_server_pass: 'Curso!Zabbix5'
-          zabbix_db_front_user: zabbix_web
-          zabbix_db_front_pass: 'Curso!Zabbix5'
-          mysql_root_pass: 'SenhaRoot1!' 
- 
-  - hosts: 10.0.0.228
-    roles:
+        when: ansible_host == "{{ zabbix_db }}"
       - role: zabbix_server
-        vars:
-          zabbix_front: 10.0.0.201
-          zabbix_server: 10.0.0.228
-          zabbix_db: 10.0.0.213
-          zabbix_danco: zabbix
-          zabbix_db_server_user: zabbix_server
-          zabbix_db_server_pass: 'Curso!Zabbix5'
-          
-  - hosts: 10.0.0.201
-    roles:
+        when: ansible_host == "{{ zabbix_server }}"
       - role: zabbix_front
-        vars:
-          zabbix_front: 10.0.0.201
-          zabbix_server: 10.0.0.228
-          zabbix_db: 10.0.0.213
-          zabbix_danco: zabbix
-          zabbix_db_front_user: zabbix_web
-          zabbix_db_front_pass: 'Curso!Zabbix5'
-          mysql_root_pass: 'SenhaRoot1!' 
-
-
+        when: ansible_host == "{{ zabbix_front }}"

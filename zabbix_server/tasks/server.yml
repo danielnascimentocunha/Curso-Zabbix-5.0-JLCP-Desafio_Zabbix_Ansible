@@ -1,6 +1,6 @@
 - name: Mudar Hostname
   hostname:
-    name: zabbixserver
+    name: {{ zabbix_server_hostname }}
 
 - name: Repositorio Zabbix - CentOS8
   dnf:

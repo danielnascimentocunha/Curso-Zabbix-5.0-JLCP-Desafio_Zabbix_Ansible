@@ -1,6 +1,19 @@
-- name: Set timezone para America/Recife
+- name: Set timezone para {{ timezone }}
   timezone:
-    name: America/Recife
+    name: "{{ timezone }}"
+
+- name: Instala pacotes de utilitários
+  dnf:
+    name:
+      - net-tools
+      - vim
+      - nano
+      - epel-release
+      - wget
+      - curl
+      - tcpdump
+      - python3
+    state: latest
 
 - name: Instala pacotes chrony
   dnf:

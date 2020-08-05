@@ -1,6 +1,6 @@
 - name: Mudar Hostname
   hostname:
-    name: {{ zabbix_server_hostname }}
+    name: "{{ zabbix_server_hostname }}"
 
 - name: Repositorio Zabbix - CentOS8
   dnf:
@@ -26,6 +26,12 @@
     name: zabbix-server
     state: started
     enabled: yes
+
+- name: Adicionar portas do Zabbix Server no firewall
+  firewalld:
+    port: 10050/tcp
+    permanent: yes
+    state: enabled
 
 - name: Adicionar portas do Zabbix Server no firewall
   firewalld:

@@ -16,11 +16,15 @@
       - zabbix_server_hostname: 'zb_server'
       - zabbix_db_hostname: 'zb_mysql'
       - zabbix_front_hostname: 'zb_front'
+      - zabbix_pid: /var/run/zabbix/zabbix_agentd.pid
+      - zabbix_log: /var/log/zabbix/zabbix_agentd.log
+      - zabbix_server_active: *ip_zabbix_server
     roles:
-      - role: zabbix_basecentos
-      - role: zabbix_db_mysql
-        when: ansible_host == "{{ zabbix_db }}"
-      - role: zabbix_server
-        when: ansible_host == "{{ zabbix_server }}"
-      - role: zabbix_front
-        when: ansible_host == "{{ zabbix_front }}"
+#      - role: zabbix_basecentos
+#      - role: zabbix_db_mysql
+#        when: ansible_host == "{{ zabbix_db }}"
+#      - role: zabbix_server
+#        when: ansible_host == "{{ zabbix_server }}"
+#      - role: zabbix_front
+#        when: ansible_host == "{{ zabbix_front }}"
+      - role: zabbixagentcurso

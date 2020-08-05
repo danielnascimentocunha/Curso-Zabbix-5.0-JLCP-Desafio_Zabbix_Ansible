@@ -1,6 +1,6 @@
 - name: Mudar Hostname
   hostname:
-    name: {{ zabbix_db_hostname }}
+    name: "{{ zabbix_db_hostname }}"
 
 - name: Instalar Mysql
   dnf:

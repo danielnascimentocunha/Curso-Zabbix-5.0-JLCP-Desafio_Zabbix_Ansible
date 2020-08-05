@@ -1,0 +1,7 @@
+- name: Deploy Zabbix Agent
+  hosts: estudo
+  become: true
+  
+  roles: 
+  - zabbixagentcurso
+

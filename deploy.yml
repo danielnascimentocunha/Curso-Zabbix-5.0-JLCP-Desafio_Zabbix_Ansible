@@ -1,7 +1,7 @@
   - hosts:
-    - &ip_zabbix_front 192.168.18.16
-    - &ip_zabbix_server 192.168.18.15
-    - &ip_zabbix_db 192.168.18.11
+    - &ip_zabbix_front 192.168.18.39
+    - &ip_zabbix_server 192.168.18.33
+    - &ip_zabbix_db 192.168.18.28
     vars: &variaveis
       - zabbix_server: *ip_zabbix_server
       - zabbix_db: *ip_zabbix_db
@@ -20,11 +20,12 @@
       - zabbix_log: /var/log/zabbix/zabbix_agentd.log
       - zabbix_server_active: *ip_zabbix_server
     roles:
-#      - role: zabbix_basecentos
-#      - role: zabbix_db_mysql
-#        when: ansible_host == "{{ zabbix_db }}"
-#      - role: zabbix_server
-#        when: ansible_host == "{{ zabbix_server }}"
-#      - role: zabbix_front
-#        when: ansible_host == "{{ zabbix_front }}"
+      # - role: zabbix_basecentos
+      # - role: zabbix_db_mysql
+      #   when: ansible_host == "{{ zabbix_db }}"
+      # - role: zabbix_server
+      #   when: ansible_host == "{{ zabbix_server }}"
+      # - role: zabbix_front
+      #   when: ansible_host == "{{ zabbix_front }}"
       - role: zabbixagentcurso
+      

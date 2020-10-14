@@ -1,24 +1,24 @@
 - name: Mudar Hostname
-  hostname:
-    name: "{{ zabbix_server_hostname }}"
+  hostname: #Altera o nome da máquina para o definido nas Variáveis do arquivo Deploy
+    name: "{{ zabbix_server_hostname }}" 
 
 - name: Repositorio Zabbix - CentOS8
-  dnf:
+  dnf: #Adiciona o repositório da versão 5.0-1 do Zabbix no CentOS 8
     name: 'http://repo.zabbix.com/zabbix/5.0/rhel/8/x86_64/zabbix-release-5.0-1.el8.noarch.rpm'
     state: present
 
 - name: Instala pacotes Zabbix
-  dnf:
+  dnf: #Instala o pacote do Zabbix Server e do cliente do MYSQL
     name:
       - zabbix-server
       - mysql
 
-- name: Import initial schema zabbix database
+- name: Import initial schema zabbix database #Executa o comando para importar o esquema do mysql no banco de dados
   shell: "zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -h {{ zabbix_db }} -u{{ zabbix_db_server_user }} -p{{ zabbix_db_server_pass }} zabbix"
 
-- name: Copiar arquivo de configuração do server
+- name: Copiar arquivo de configuração do server #Gera o arquivo de configuração do Zabbix Server a partir do template
   template:
-    src: templates/zabbix_server.j2
+    src: templates/zabbix_server.j2 #Para fazer mudanças, altere o arquivo do template
     dest: /etc/zabbix/zabbix_server.conf
 
 - name: Habilita e inicia servico zabbix-server

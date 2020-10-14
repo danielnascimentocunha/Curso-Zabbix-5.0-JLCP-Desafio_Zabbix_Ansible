@@ -1,2 +1,2 @@
 - name: Instalação do zabbix_server
-  include_tasks: server.yml
+  include_tasks: server.yml #Inclui o arquivo com os passos da instalação do Zabbix Server

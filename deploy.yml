@@ -1,31 +1,31 @@
   - hosts:
-    - &ip_zabbix_db 192.168.18.28
-    - &ip_zabbix_server 192.168.18.33
-    - &ip_zabbix_front 192.168.18.39
-    vars: &variaveis
+    - &ip_zabbix_db 192.168.18.28 #Ip da máquina onde será instalado o Banco de Dados MYSQL
+    - &ip_zabbix_server 192.168.18.33 #Ip da máquina onde será instalado o Zabbix Server
+    - &ip_zabbix_front 192.168.18.39 #Ip da máquina onde será instalado o Zabbix Frontend
+    vars:
       - zabbix_db: *ip_zabbix_db
       - zabbix_server: *ip_zabbix_server
       - zabbix_front: *ip_zabbix_front
-      - zabbix_danco: 'zabbix'
-      - zabbix_db_server_user: 'zabbix_server'
-      - zabbix_db_server_pass: 'Curso!Zabbix5'
-      - zabbix_db_front_user: 'zabbix_web'
-      - zabbix_db_front_pass: 'Curso!Zabbix5'
-      - mysql_root_pass: 'SenhaRoot1!'
-      - timezone: 'America/Recife'
-      - zabbix_server_hostname: 'zb_server'
-      - zabbix_db_hostname: 'zb_mysql'
-      - zabbix_front_hostname: 'zb_front' 
-      - zabbix_pid: /var/run/zabbix/zabbix_agentd.pid
-      - zabbix_log: /var/log/zabbix/zabbix_agentd.log
-      - zabbix_server_active: *ip_zabbix_server
+      - zabbix_danco: 'zabbix' #Nome do banco
+      - zabbix_db_server_user: 'zabbix_server' #Usuário que será criado no banco para o Zabbix Server
+      - zabbix_db_server_pass: 'Curso!Zabbix5' #Senha do Zabbix Server no Banco
+      - zabbix_db_front_user: 'zabbix_web' #Usuário que será criado no banco para o Zabbix Frontend
+      - zabbix_db_front_pass: 'Curso!Zabbix5' #Senha do Zabbix Frontend no Banco
+      - mysql_root_pass: 'SenhaRoot1!' #Senha que será definida para o Usuário root do banco
+      - timezone: 'America/Recife' #Timezone dos servidores 
+      - zabbix_db_hostname: 'zb_mysql' #nome dado para a máquina do Banco de Dados
+      - zabbix_server_hostname: 'zb_server' #nome dado para a máquina do Zabbix Server
+      - zabbix_front_hostname: 'zb_front' #nome dado para a máquina do Zabbix frontend
+      - zabbix_pid: /var/run/zabbix/zabbix_agentd.pid #Váriavel de configuração do agent Zabbix
+      - zabbix_log: /var/log/zabbix/zabbix_agentd.log #Váriavel de configuração do agent Zabbix
+      - zabbix_server_active: *ip_zabbix_server #Váriavel de configuração do agent Zabbix
     roles:
-      - role: zabbix_basecentos
-      - role: zabbix_db_mysql
-        when: ansible_host == "{{ zabbix_db }}"
-      - role: zabbix_server
+      - role: zabbix_basecentos #Executa as tarefas básicas de configuração do CentOS
+      - role: zabbix_db_mysql #Instala o Mysql e executa as configurações iniciais do banco para zabbix no CentOS
+        when: ansible_host == "{{ zabbix_db }}" 
+      - role: zabbix_server #Instala o Zabbix Server no CentOS e cria os dados no banco
         when: ansible_host == "{{ zabbix_server }}"
-      - role: zabbix_front
+      - role: zabbix_front #Instala e Configura o Frontend o Zabbix
         when: ansible_host == "{{ zabbix_front }}"
-      - role: zabbixagentcurso
+      - role: zabbixagentcurso #Instala o Agente nas máquinas
       
